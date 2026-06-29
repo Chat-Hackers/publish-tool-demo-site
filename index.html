@@ -1,0 +1,53 @@
+<html lang="en">
+
+<head>
+    <title>Amazing Group - Chat Hackers publishing demo</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .post {
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>The Amazing Group</h1>
+    <p>We are a brilliant group who do fantastic things.</p>
+    <h2>🌐 Our Latest Amazing Updates:</h2>
+    <section id="updates"></section>
+    <script async>
+        // TODO: fill in group id for demo group
+        const groupId = "";
+        const publishUrl = `https://dashboard.chathackers.uk/publish/api/posts?groupId=${groupId}`;
+
+        fetch(publishUrl)
+            .then(res => res.json())
+            .then(posts => {
+                console.log("Posts look like this:", posts)
+
+                const updateContainer = document.getElementById("updates");
+
+                posts.forEach(post => {
+                    const postElement = document.createElement('p');
+                    postElement.innerHTML = post.text;
+                    postElement.className = "post"
+                    updateContainer.appendChild(postElement);
+
+                    const postTime = new Date(post.time);
+                    const spanElement = document.createElement("span");
+                    spanElement.innerHTML = postTime.toLocaleString();
+                    spanElement.className = "time"
+                    updateContainer.appendChild(spanElement);
+                })
+            })
+    </script>
+</body>
+
+</html>

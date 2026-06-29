@@ -19,7 +19,6 @@ The script is the key part of the demonstration. The publishUrl comes from the p
                     postElement.innerHTML = post.text;
                     postElement.className = "post"
                     updateContainer.appendChild(postElement);
-            [...]
                 })
             })
 ```
